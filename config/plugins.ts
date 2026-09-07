@@ -27,11 +27,9 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
     config: {
       jwtManagement: 'refresh',
       sessions: {
-        accessTokenLifespan: 60,        // ⚡ 1 minute (testing)
-        // idleSessionLifespan:300,         // ⚡ 4 minutes (testing)
-        // maxSessionLifespan:600,           // ⚡ 4 minutes (testing)
-        idleRefreshTokenLifespan:300, // ⚡ 4 minutes (testing)
-        maxRefreshTokenLifespan: 600,   // ⚡ 4 minutes (testing)
+        accessTokenLifespan: 900,          // 15 minutes — access token expiry
+        idleRefreshTokenLifespan: 1800,    // 30 minutes — no activity => refresh token dies => auto logout
+        maxRefreshTokenLifespan: 86400,    // 24 hours — absolute max session length
         httpOnly: true,
         cookie: {
           name: 'strapi_up_refresh',
